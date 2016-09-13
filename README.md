@@ -11,7 +11,7 @@ Real time log Analysis
 1) Best way to do real time log analysis is to use  
 a) Log Forwarders (Logstash, Fluentd, StatsD, CollectD)  
 b) Use ElasticSearch or MongoDB  
-c) Use GUI tools like Kibana
+c) Use GUI tools like Kibana  
 d) For Monitoring & Alerting Use Sensu, Uchiwa and Pager Duty.  
 
 Option 2:  
