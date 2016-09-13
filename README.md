@@ -6,9 +6,17 @@
 3) mvn clean package  (compiles, run test cases, creates fat jar)  
 4) java -jar target/loganalytics-0.0.1-SNAPSHOT-fat.jar  -conf src/main/resources/config.json  
 
+Details:  
+Apache access log is copied to /tmp and same is defined in property file  
+config.json  
+   {  
+     "logpath" : "/tmp/access.log"  
+   }  
 
 
-Below are curl calls to get data from access log
+
+
+Below are curl calls to get data from access log  
 
 # total number of GET requests
 curl -X GET http://localhost:8080/log/GET/count
