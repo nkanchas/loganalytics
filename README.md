@@ -3,15 +3,16 @@
 #Design & Approach:  
 LogAnalytcis Can we done in 2 ways.  
 1) Real time log Analysis  
-2) Query data from historical log    
+2) Query data from log file  
 
 
 Option 1:  
 Real time log Analysis  
 1) Best way to do real time log analysis is to use  
 a) Log Forwarders (Logstash, Fluentd, StatsD, CollectD)  
-b) User ElasticSearch(with Kibana) or MongoDB  
-c) For Monitoring & Alerting Use Sensu, Uchiwa and Pager Duty.  
+b) Use ElasticSearch or MongoDB  
+c) Use GUI tools like Kibana
+d) For Monitoring & Alerting Use Sensu, Uchiwa and Pager Duty.  
 
 Option 2:  
 Query Data from log file    
@@ -19,7 +20,7 @@ I took simple approach using unix "awk", "cut" pipe commands to do the same.
 
 Technology Stack: Vertx, REST and JSON
 
-Below repository is for option 2 to query log file. (Used to do quick insight into data)  
+Below repository is for option 2 to query log file. (Used for quick insight into data)  
 
 
 #Steps 
