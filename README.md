@@ -17,6 +17,8 @@ Option 2:
 Query Data from log file    
 I took simple approach using unix "awk", "cut" pipe commands to do the same.  
 
+Technology Stack: Vertx, REST and JSON
+
 Below repository is for option 2 to query log file. (Used to do quick insight into data)  
 
 
