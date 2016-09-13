@@ -21,7 +21,7 @@ Below repository is for option 2 to query log file. (Used to do quick insight in
 
 
 #Steps 
-1) copy access.log to /tmp  (Optional. If not copied access.log from repo will be considered)
+1) copy access.log to /tmp  (Optional. If not copied access.log from repo will be considered)  
 2) git clone https://github.com/nkanchas/loganalytics.git  
 3) cd loganalytics (log into project)  
 4) mvn clean package  (compiles, run test cases, creates fat jar)  
