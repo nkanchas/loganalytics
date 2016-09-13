@@ -1,18 +1,20 @@
 # loganalytics
 
 #Design & Approach:  
-LogAnalytcis Can we done in 2 ways .
+LogAnalytcis Can we done in 2 ways.  
 1) Real time log Analysis  
 2) Query data from historical log    
 
 
-Option 1: Real time log Analysis
+Option 1:  
+Real time log Analysis  
 1) Best way to do real time log analysis is to use  
 a) Log Forwarders (Logstash, Fluentd, StatsD, CollectD)  
 b) User ElasticSearch(with Kibana) or MongoDB  
 c) For Monitoring & Alerting Use Sensu, Uchiwa and Pager Duty.  
 
-Option 2: Query Data from log file  
+Option 2:  
+Query Data from log file    
 I took simple approach using unix "awk", "cut" pipe commands to do the same.  
 
 Below repository is for option 2 to query log file. (Used to do quick insight into data)  
