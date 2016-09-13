@@ -1,10 +1,10 @@
 # loganalytics
 
 #Steps 
-1) git clone https://github.com/nkanchas/loganalytics.git  \n
-2) cd loganalytics (log into project)   \n
-3) mvn clean package  (compiles, run test cases, creates fat jar)
-4) java -jar target/loganalytics-0.0.1-SNAPSHOT-fat.jar  -conf src/main/resources/config.json
+1) git clone https://github.com/nkanchas/loganalytics.git  
+2) cd loganalytics (log into project)  
+3) mvn clean package  (compiles, run test cases, creates fat jar)  
+4) java -jar target/loganalytics-0.0.1-SNAPSHOT-fat.jar  -conf src/main/resources/config.json  
 
 
 
