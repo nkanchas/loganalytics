@@ -1,12 +1,14 @@
 # loganalytics
 
 #Steps 
-1) git clone https://github.com/nkanchas/loganalytics.git  
-2) cd loganalytics (log into project)  
-3) mvn clean package  (compiles, run test cases, creates fat jar)  
-4) java -jar target/loganalytics-0.0.1-SNAPSHOT-fat.jar  -conf src/main/resources/config.json  
+1) copy access.log to /tmp
+2) git clone https://github.com/nkanchas/loganalytics.git  
+3) cd loganalytics (log into project)  
+4) mvn clean package  (compiles, run test cases, creates fat jar)  
+5) java -jar target/loganalytics-0.0.1-SNAPSHOT-fat.jar  -conf src/main/resources/config.json  
 
-Details:  
+
+More Information:  
 Apache access log is copied to /tmp and same is defined in property file  
 config.json  
    {  
