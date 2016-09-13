@@ -1,7 +1,7 @@
 # loganalytics
 
 #Steps 
-1) copy access.log to /tmp
+1) copy access.log to /tmp  
 2) git clone https://github.com/nkanchas/loganalytics.git  
 3) cd loganalytics (log into project)  
 4) mvn clean package  (compiles, run test cases, creates fat jar)  
