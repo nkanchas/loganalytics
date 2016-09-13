@@ -22,43 +22,66 @@ public class ProcessBuilder {
 		JsonObject jo = new JsonObject();
 		List<String> keys = new ArrayList<>(Arrays.asList("hits", "http-code"));
 
-		jo.put("User-Agents", new ProcessBuilder().executeTopCommand(cmd, keys));
+		jo.put("User-Agents",  ProcessBuilder.executeTopCommand(cmd, keys));
 
 		return jo.toString();
 	}
 
+	/** gets all user -agents based on most usage count
+	 * 
+	 * @param logpath
+	 * @return
+	 */
 	public static String getAllUniqueAgents(String logpath) {
 		String[] cmd = { "/bin/sh", "-c", "cat " + logpath + " | awk -F\\\" '{ print $6 }' |  sort | uniq -c | sort -nr | more -n 10" };
 
 		JsonObject jo = new JsonObject();
 		List<String> keys = new ArrayList<>(Arrays.asList("hits", "user-agent"));
 
-		jo.put("User-Agents", new ProcessBuilder().executeTopCommand(cmd, keys));
+		jo.put("User-Agents", ProcessBuilder.executeTopCommand(cmd, keys));
 
 		return jo.toString();
 
 	}
 
+	/** gets count for HTTP method access
+	 * 
+	 * @param httpMethod
+	 * @param logpath
+	 * @return
+	 */
 	public static String getHTTMethodCount(String httpMethod, String logpath) {
 		String[] cmd = { "/bin/sh", "-c", "awk -F\\\" '($2 ~ \"" + httpMethod + "\")' " + logpath + " | wc -l" };
 
 		JsonObject jo = new JsonObject();
-		jo.put("count", new ProcessBuilder().executeCountCommand(cmd));
+		jo.put("count", ProcessBuilder.executeCountCommand(cmd));
 
 		return jo.toString();
 	}
 
+	/** get top user agents
+	 * 
+	 * @param number
+	 * @param logPath
+	 * @return
+	 */
 	public static String getTopUserAgents(int number, String logPath) {
 		String[] cmd = { "/bin/sh", "-c",
 				"cat " + logPath + " | awk -F\\\" '{ print $6 }' | sort | uniq -c | sort -frn | head -n " + number };
 		ProcessBuilder obj = new ProcessBuilder();
 		List<String> keys = new ArrayList<>(Arrays.asList("hits", "user-agent"));
 		JsonObject jo = new JsonObject();
-		jo.put("Top-UserAgents", obj.executeTopCommand(cmd, keys));
+		jo.put("Top-UserAgents", ProcessBuilder.executeTopCommand(cmd, keys));
 
 		return jo.toString();
 	}
 
+	/**
+	 * 
+	 * @param number
+	 * @param logPath
+	 * @return
+	 */
 	public static String getTopUrls(int number, String logPath) {
 		String[] cmd = { "/bin/sh", "-c",
 				"cut -d'\"' -f4 " + logPath + " | grep -v '^-$' | sort | uniq -c | sort -rg | head -n" + number };
@@ -66,12 +89,12 @@ public class ProcessBuilder {
 		List<String> keys = new ArrayList<>(Arrays.asList("hits", "url"));
 
 		JsonObject jo = new JsonObject();
-		jo.put("TopUrls", new ProcessBuilder().executeTopCommand(cmd, keys));
+		jo.put("TopUrls", ProcessBuilder.executeTopCommand(cmd, keys));
 
 		return jo.toString();
 	}
 
-	private String executeCountCommand(String[] cmd) {
+	private static String executeCountCommand(String[] cmd) {
 		Process p;
 		String count = null;
 		try {
@@ -89,7 +112,7 @@ public class ProcessBuilder {
 		return count;
 	}
 
-	private JsonArray executeTopCommand(String[] command, List<String> keys) {
+	private static JsonArray executeTopCommand(String[] command, List<String> keys) {
 
 		JsonArray jarray = new JsonArray();
 
