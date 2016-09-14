@@ -21,8 +21,10 @@ public class MainVerticle extends AbstractVerticle{
 	
 	private static String filePath ="src/main/resources/access.log";
 	
-	public static void main(String args[]){
-		logger.info("....args[0]"+ args[0]);
+	private QueryInterface queryIntf;
+	
+	public MainVerticle(){
+		queryIntf = new ProcessBuilder();
 	}
 	
 	@Override
@@ -76,19 +78,19 @@ public class MainVerticle extends AbstractVerticle{
 		if(rc.request().uri().indexOf("log/topurls") >=0){
 			String no = rc.request().getParam("number");
 			int number = Integer.parseInt(no);
-			response.putHeader("content-type", "application/json").end(ProcessBuilder.getTopUrls(number, filePath));
+			response.putHeader("content-type", "application/json").end(queryIntf.getTopUrls(number, filePath));
 		}else if(rc.request().uri().equalsIgnoreCase("/log/user-agents")){
-			response.putHeader("content-type", "application/json").end(ProcessBuilder.getAllUniqueAgents(filePath));
+			response.putHeader("content-type", "application/json").end(queryIntf.getAllUniqueAgents(filePath));
 		}else if(rc.request().uri().indexOf("log/useragents/top") >=0){
 			String no = rc.request().getParam("number");
 			int number = Integer.parseInt(no);
-			response.putHeader("content-type", "application/json").end(ProcessBuilder.getTopUserAgents(number, filePath));
+			response.putHeader("content-type", "application/json").end(queryIntf.getTopUserAgents(number, filePath));
 		}else if(rc.request().uri().indexOf("log/GET/count") >=0){
-			response.putHeader("content-type", "application/json").end(ProcessBuilder.getHTTMethodCount("GET", filePath));
+			response.putHeader("content-type", "application/json").end(queryIntf.getHTTMethodCount("GET", filePath));
 	    }else if(rc.request().uri().indexOf("log/POST/count") >=0){
-	    	response.putHeader("content-type", "application/json").end(ProcessBuilder.getHTTMethodCount("POST", filePath));
+	    	response.putHeader("content-type", "application/json").end(queryIntf.getHTTMethodCount("POST", filePath));
 	    }else if(rc.request().uri().indexOf("/log/top/responsecodes") >=0){
-	    	response.putHeader("content-type", "application/json").end(ProcessBuilder.getTopResponseCodes(filePath));
+	    	response.putHeader("content-type", "application/json").end(queryIntf.getTopResponseCodes(filePath));
 	    }else{
 	    	logger.error("Failed to find resource for END POINT"+ rc.request().uri().toString());
 			sendError(404, response);

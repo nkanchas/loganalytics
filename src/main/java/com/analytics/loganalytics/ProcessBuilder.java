@@ -8,14 +8,15 @@ import java.io.BufferedReader;
 
 import java.io.InputStreamReader;
 
-public class ProcessBuilder {
+public class ProcessBuilder implements QueryInterface{
 	
 	/**
 	 * Returns top response codes based  on log
 	 * @param logpath
 	 * @return
 	 */
-	public static String getTopResponseCodes(String logpath){
+	@Override
+	public String getTopResponseCodes(String logpath){
 		String[] cmd = { "/bin/sh", "-c", 
 				"cat " + logpath + " | awk '{print $9}' | sort | uniq -c | sort -nr" };
 
@@ -32,7 +33,8 @@ public class ProcessBuilder {
 	 * @param logpath
 	 * @return
 	 */
-	public static String getAllUniqueAgents(String logpath) {
+	@Override
+	public  String getAllUniqueAgents(String logpath) {
 		String[] cmd = { "/bin/sh", "-c", "cat " + logpath + " | awk -F\\\" '{ print $6 }' |  sort | uniq -c | sort -nr | more -n 10" };
 
 		JsonObject jo = new JsonObject();
@@ -50,7 +52,8 @@ public class ProcessBuilder {
 	 * @param logpath
 	 * @return
 	 */
-	public static String getHTTMethodCount(String httpMethod, String logpath) {
+	@Override
+	public String getHTTMethodCount(String httpMethod, String logpath) {
 		String[] cmd = { "/bin/sh", "-c", "awk -F\\\" '($2 ~ \"" + httpMethod + "\")' " + logpath + " | wc -l" };
 
 		JsonObject jo = new JsonObject();
@@ -65,7 +68,8 @@ public class ProcessBuilder {
 	 * @param logPath
 	 * @return
 	 */
-	public static String getTopUserAgents(int number, String logPath) {
+	@Override
+	public  String getTopUserAgents(int number, String logPath) {
 		String[] cmd = { "/bin/sh", "-c",
 				"cat " + logPath + " | awk -F\\\" '{ print $6 }' | sort | uniq -c | sort -frn | head -n " + number };
 		ProcessBuilder obj = new ProcessBuilder();
@@ -82,7 +86,8 @@ public class ProcessBuilder {
 	 * @param logPath
 	 * @return
 	 */
-	public static String getTopUrls(int number, String logPath) {
+	@Override
+	public String getTopUrls(int number, String logPath) {
 		String[] cmd = { "/bin/sh", "-c",
 				"cut -d'\"' -f4 " + logPath + " | grep -v '^-$' | sort | uniq -c | sort -rg | head -n" + number };
 
